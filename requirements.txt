@@ -3,55 +3,170 @@
 alembic==1.18.4
     # via saas-fastapi-example (pyproject.toml)
 annotated-doc==0.0.4
-    # via fastapi
+    # via
+    #   fastapi
+    #   typer
 annotated-types==0.7.0
     # via pydantic
 anyio==4.12.1
-    # via starlette
+    # via
+    #   httpx
+    #   starlette
+    #   watchfiles
 asyncpg==0.31.0
     # via saas-fastapi-example (pyproject.toml)
 black==26.1.0
     # via saas-fastapi-example (pyproject.toml)
+certifi==2026.1.4
+    # via
+    #   httpcore
+    #   httpx
+    #   sentry-sdk
+cfgv==3.5.0
+    # via pre-commit
 click==8.3.1
-    # via black
+    # via
+    #   black
+    #   rich-toolkit
+    #   typer
+    #   uvicorn
 colorama==0.4.6
-    # via click
+    # via
+    #   click
+    #   pytest
+    #   uvicorn
+distlib==0.4.0
+    # via virtualenv
+dnspython==2.8.0
+    # via email-validator
+email-validator==2.3.0
+    # via
+    #   fastapi
+    #   pydantic
 fastapi==0.128.8
     # via saas-fastapi-example (pyproject.toml)
+fastapi-cli==0.0.21
+    # via fastapi
+fastapi-cloud-cli==0.11.0
+    # via fastapi-cli
+fastar==0.8.0
+    # via fastapi-cloud-cli
+filelock==3.20.3
+    # via virtualenv
 greenlet==3.3.1
     # via sqlalchemy
+h11==0.16.0
+    # via
+    #   httpcore
+    #   uvicorn
+httpcore==1.0.9
+    # via httpx
+httptools==0.7.1
+    # via uvicorn
+httpx==0.28.1
+    # via
+    #   fastapi
+    #   fastapi-cloud-cli
+identify==2.6.16
+    # via pre-commit
 idna==3.11
-    # via anyio
+    # via
+    #   anyio
+    #   email-validator
+    #   httpx
+iniconfig==2.3.0
+    # via pytest
+jinja2==3.1.6
+    # via fastapi
 librt==0.7.8
     # via mypy
 mako==1.3.10
     # via alembic
+markdown-it-py==4.0.0
+    # via rich
 markupsafe==3.0.3
-    # via mako
+    # via
+    #   jinja2
+    #   mako
+mdurl==0.1.2
+    # via markdown-it-py
 mypy==1.19.1
     # via saas-fastapi-example (pyproject.toml)
 mypy-extensions==1.1.0
     # via
     #   black
     #   mypy
+nodeenv==1.10.0
+    # via pre-commit
 packaging==26.0
-    # via black
+    # via
+    #   black
+    #   pytest
+passlib==1.7.4
+    # via saas-fastapi-example (pyproject.toml)
 pathspec==1.0.4
     # via
     #   black
     #   mypy
 platformdirs==4.5.1
-    # via black
+    # via
+    #   black
+    #   virtualenv
+pluggy==1.6.0
+    # via pytest
+pre-commit==4.5.1
+    # via saas-fastapi-example (pyproject.toml)
 psycopg2==2.9.11
     # via saas-fastapi-example (pyproject.toml)
 pydantic==2.12.5
     # via
     #   fastapi
+    #   fastapi-cloud-cli
+    #   pydantic-extra-types
+    #   pydantic-settings
     #   sqlmodel
 pydantic-core==2.41.5
     # via pydantic
+pydantic-extra-types==2.11.0
+    # via fastapi
+pydantic-settings==2.12.0
+    # via
+    #   saas-fastapi-example (pyproject.toml)
+    #   fastapi
+pygments==2.19.2
+    # via
+    #   pytest
+    #   rich
+pyjwt==2.11.0
+    # via saas-fastapi-example (pyproject.toml)
+pytest==9.0.2
+    # via saas-fastapi-example (pyproject.toml)
+python-dotenv==1.2.1
+    # via
+    #   pydantic-settings
+    #   uvicorn
+python-multipart==0.0.22
+    # via fastapi
 pytokens==0.4.1
     # via black
+pyyaml==6.0.3
+    # via
+    #   pre-commit
+    #   uvicorn
+rich==14.3.2
+    # via
+    #   rich-toolkit
+    #   typer
+rich-toolkit==0.19.3
+    # via
+    #   fastapi-cli
+    #   fastapi-cloud-cli
+rignore==0.7.6
+    # via fastapi-cloud-cli
+sentry-sdk==2.52.0
+    # via fastapi-cloud-cli
+shellingham==1.5.4
+    # via typer
 sqlalchemy==2.0.46
     # via
     #   saas-fastapi-example (pyproject.toml)
@@ -61,6 +176,10 @@ sqlmodel==0.0.33
     # via saas-fastapi-example (pyproject.toml)
 starlette==0.52.1
     # via fastapi
+typer==0.23.0
+    # via
+    #   fastapi-cli
+    #   fastapi-cloud-cli
 typing-extensions==4.15.0
     # via
     #   alembic
@@ -68,9 +187,25 @@ typing-extensions==4.15.0
     #   mypy
     #   pydantic
     #   pydantic-core
+    #   pydantic-extra-types
+    #   rich-toolkit
     #   sqlalchemy
     #   typing-inspection
 typing-inspection==0.4.2
     # via
     #   fastapi
     #   pydantic
+    #   pydantic-settings
+urllib3==2.6.3
+    # via sentry-sdk
+uvicorn==0.40.0
+    # via
+    #   fastapi
+    #   fastapi-cli
+    #   fastapi-cloud-cli
+virtualenv==20.36.1
+    # via pre-commit
+watchfiles==1.1.1
+    # via uvicorn
+websockets==16.0
+    # via uvicorn
