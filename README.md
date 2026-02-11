@@ -15,6 +15,14 @@ Example SaaS application built with **FastAPI** showcasing modern software archi
 - 🧅 **Clean Architecture** - Layered structure with clear boundaries between domain, application, and infrastructure
 - 🔐 **Multi-tenancy** - SaaS-ready with tenant isolation
 
+### Tech Stack
+
+- ⚡ **Fully Async** - Asynchronous from top to bottom using `asyncio`
+- 🐘 **PostgreSQL** - Primary database with async support
+- 🗄️ **SQLAlchemy 2.0 + SQLModel** - Modern async ORM with Pydantic integration
+- 🔄 **Alembic** - Database migrations management
+- 👷 **Celery + Redis** - Distributed task queue for background workers
+
 ## Installation
 
 ### Prerequisites
