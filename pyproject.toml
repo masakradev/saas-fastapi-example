@@ -14,3 +14,8 @@ dependencies = [
     "sqlalchemy>=2.0.46",
     "sqlmodel>=0.0.33",
 ]
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.5.1",
+]

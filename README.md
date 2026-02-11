@@ -59,3 +59,27 @@ uv lock --upgrade
 uv sync
 ```
 
+## Development
+
+### Pre-commit hooks
+
+This project uses [pre-commit](https://pre-commit.com/) to run code quality checks before each commit.
+
+**Install pre-commit hooks**:
+
+```bash
+uv run pre-commit install
+```
+
+This will automatically run the following checks on `git commit`:
+- **black** - Code formatting
+- **isort** - Import sorting
+- **trailing-whitespace** - Remove trailing whitespace
+- **end-of-file-fixer** - Ensure files end with newline
+- **check-yaml** - Validate YAML files
+
+**Run manually on all files**:
+
+```bash
+uv run pre-commit run --all-files
+```
