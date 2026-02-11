@@ -1,0 +1,12 @@
+[project]
+name = "saas-fastapi-example"
+version = "0.1.0"
+description = "SaaS fastapi example application"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "black>=26.1.0",
+    "fastapi>=0.128.8",
+    "mypy>=1.19.1",
+    "sqlalchemy>=2.0.46",
+]
