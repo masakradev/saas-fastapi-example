@@ -110,3 +110,9 @@ This will automatically run the following checks on `git commit`:
 ```bash
 uv run pre-commit run --all-files
 ```
+
+### Database Migrations
+
+This project uses [Alembic](https://alembic.sqlalchemy.org/) for database migrations.
+
+For full migration documentation, see [app/alembic/README.md](app/alembic/README.md).

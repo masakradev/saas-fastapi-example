@@ -1,6 +1,9 @@
 from collections.abc import AsyncGenerator
+from os import environ
 
 import pytest
+from alembic import command
+from alembic.config import Config
 from sqlalchemy.ext.asyncio import (
     AsyncEngine,
     AsyncSession,
@@ -9,6 +12,16 @@ from sqlalchemy.ext.asyncio import (
 )
 
 from app.core.config import settings
+
+
+def set_test_env():
+    environ["ENV"] = "TEST"
+
+
+def pytest_configure():
+    set_test_env()
+    alembic_cfg = Config("alembic.ini")
+    command.upgrade(alembic_cfg, "head")
 
 
 def get_test_engine() -> AsyncEngine:
