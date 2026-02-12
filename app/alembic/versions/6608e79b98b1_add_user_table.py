@@ -30,11 +30,16 @@ def upgrade() -> None:
         sa.Column(
             "hashed_password", sqlmodel.sql.sqltypes.AutoString(), nullable=False
         ),
+        sa.Column("deleted_at", sa.DateTime(), nullable=True),
+        sa.Column("created_at", sa.DateTime(), nullable=False),
+        sa.Column("updated_at", sa.DateTime(), nullable=False),
         sa.PrimaryKeyConstraint("id"),
     )
+    op.create_index(op.f("ix_users_email"), "users", ["email"], unique=True)
     pass
 
 
 def downgrade() -> None:
+    op.drop_index(op.f("ix_users_email"), table_name="users")
     op.drop_table("users")
     pass

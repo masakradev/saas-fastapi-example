@@ -2,18 +2,15 @@ from datetime import datetime, timedelta, timezone
 from typing import Any
 
 from jwt import encode
-from passlib.context import CryptContext
+from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.core.config import settings
-
-ALGORITHM = "HS256"
-
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+from app.core.config import ALGORITHM, settings
+from app.core.security import verify_password
+from app.modules.user.actions import get_user_by_email
 
 
-def authenticate(email: str, password: str):
-    # TODO: replace with real user lookup from DB
-    user = None  # placeholder
+async def authenticate(session: AsyncSession, email: str, password: str):
+    user = await get_user_by_email(email=email, session=session)
     if not user:
         return None
     if not verify_password(password, user.hashed_password):
@@ -28,11 +25,3 @@ def create_access_token(subject: str | Any) -> str:
     to_encode = {"exp": expire, "sub": str(subject)}
     encoded_jwt = encode(to_encode, settings.SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
-
-
-def verify_password(plain_password: str, hashed_password: str) -> bool:
-    return pwd_context.verify(plain_password, hashed_password)
-
-
-def get_password_hash(password: str) -> str:
-    return pwd_context.hash(password)

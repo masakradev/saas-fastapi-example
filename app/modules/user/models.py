@@ -5,6 +5,8 @@ from app.core.mixin import DeletedAtMixin, TimestampMixin
 
 
 class User(SQLModel, TimestampMixin, DeletedAtMixin, table=True):
+    __tablename__ = "users"
+
     id: int | None = Field(default=None, primary_key=True)
     email: EmailStr = Field(index=True, nullable=False, unique=True)
     is_active: bool = Field(default=True, nullable=False)
