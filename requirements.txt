@@ -10,6 +10,7 @@ annotated-types==0.7.0
     # via pydantic
 anyio==4.12.1
     # via
+    #   saas-fastapi-example (pyproject.toml)
     #   httpx
     #   starlette
     #   watchfiles
@@ -180,6 +181,8 @@ typer==0.23.0
     # via
     #   fastapi-cli
     #   fastapi-cloud-cli
+types-passlib==1.7.7.20260211
+    # via saas-fastapi-example (pyproject.toml)
 typing-extensions==4.15.0
     # via
     #   alembic

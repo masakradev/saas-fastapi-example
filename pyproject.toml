@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
     "alembic>=1.18.4",
+    "anyio>=4.0.0",
     "asyncpg>=0.31.0",
     "black>=26.1.0",
     "fastapi[standard]>=0.128.8",
@@ -18,9 +19,19 @@ dependencies = [
     "pytest>=9.0.2",
     "sqlalchemy>=2.0.46",
     "sqlmodel>=0.0.33",
+    "types-passlib>=1.7.7.20260211",
 ]
 
 [dependency-groups]
 dev = [
-    "pre-commit>=4.5.1",
+    "pre-commit>=4.5.1"
 ]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["app/tests"]
+
+[tool.isort]
+profile = "black"
+known_first_party = ["app"]
+skip = [".venv", "venv"]

@@ -12,7 +12,8 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
 def authenticate(email: str, password: str):
-    user = {"placeholder": email}
+    # TODO: replace with real user lookup from DB
+    user = None  # placeholder
     if not user:
         return None
     if not verify_password(password, user.hashed_password):

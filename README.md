@@ -29,6 +29,33 @@ Example SaaS application built with **FastAPI** showcasing modern software archi
 
 - Python 3.14+
 - [uv](https://docs.astral.sh/uv/) - Fast Python package manager
+- [Docker](https://www.docker.com/) - Just docker.
+
+### Docker Setup
+
+**1. Configure environment variables**:
+
+```bash
+cp .env.example .env
+```
+
+Edit `.env` file with your configuration.
+
+**2. Start docker**:
+
+```bash
+docker compose up -d
+```
+
+This will start PostgreSQL 17 and automatically create two databases:
+- `saas_db` - Main application database
+- `saas_db_test` - Test database
+
+**3. Verify the container is running**:
+
+```bash
+docker compose ps
+```
 
 ### Setup
 
