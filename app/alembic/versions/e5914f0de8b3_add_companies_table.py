@@ -24,8 +24,8 @@ def upgrade() -> None:
     op.create_table(
         "companies",
         sa.Column("id", sa.Integer(), nullable=False),
-        sa.Column("name", sqlmodel.sql.sqltypes.AutoString(), nullable=False),
-        sa.Column("slug", sqlmodel.sql.sqltypes.AutoString(), nullable=False),
+        sa.Column("name", sa.String(), nullable=False),
+        sa.Column("slug", sa.String(), nullable=False),
         sa.Column("is_active", sa.Boolean(), nullable=False),
         sa.Column("deleted_at", sa.DateTime(), nullable=True),
         sa.Column("created_at", sa.DateTime(), nullable=False),

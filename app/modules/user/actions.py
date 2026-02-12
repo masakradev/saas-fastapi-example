@@ -23,11 +23,11 @@ async def get_user_by_email(email: str, session: AsyncSession) -> User | None:
 
 
 async def create_user(user_create: UserCreate, session: AsyncSession) -> User:
-    user_create = {
+    user_data = {
         **user_create.model_dump(),
         "hashed_password": get_password_hash(user_create.password),
     }
-    user = User.model_validate(user_create)
+    user = User.model_validate(user_data)
     session.add(user)
     await session.commit()
     await session.refresh(user)

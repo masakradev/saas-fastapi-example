@@ -31,7 +31,7 @@ class Settings(BaseSettings):
                 password=self.POSTGRES_PASSWORD,
                 host=self.POSTGRES_SERVER,
                 port=self.POSTGRES_PORT,
-                path=(self.POSTGRES_DB if not test else f"/{self.POSTGRES_DB}_test"),
+                path=(self.POSTGRES_DB if not test else f"{self.POSTGRES_DB}_test"),
             )
         )
 
