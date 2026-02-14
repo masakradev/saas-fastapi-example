@@ -6,7 +6,10 @@ from app.modules.membership.router import router as membership_router
 from app.modules.user.router import router as user_router
 
 router = APIRouter()
+# Public routes
 router.include_router(auth_router, prefix="/auth")
 router.include_router(user_router, prefix="/users")
-router.include_router(membership_router, prefix="/memberships")
 router.include_router(company_router, prefix="/companies")
+
+# Per company routes
+router.include_router(membership_router)

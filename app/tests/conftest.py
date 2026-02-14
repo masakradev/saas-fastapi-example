@@ -17,7 +17,7 @@ from sqlalchemy.ext.asyncio import (
 from app.core.account import Account
 from app.core.config import settings
 from app.core.db import get_async_session
-from app.core.deps import get_account
+from app.core.deps import get_full_account, get_user_account
 from app.main import app
 from app.modules.company.models import Company
 from app.modules.user.models import User
@@ -75,11 +75,16 @@ async def async_client(user, async_session):
     async def _get_test_async_session() -> AsyncGenerator[AsyncSession, None]:
         yield async_session
 
-    async def _get_test_account() -> Account:
+    async def _get_user_account() -> Account:
+        return Account(user=user, company=None)
+
+    async def _get_full_account() -> Account:
+        # TODO create a company and return
         return Account(user=user, company=None)
 
     app.dependency_overrides[get_async_session] = _get_test_async_session
-    app.dependency_overrides[get_account] = _get_test_account
+    app.dependency_overrides[get_user_account] = _get_user_account
+    app.dependency_overrides[get_full_account] = _get_full_account
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:

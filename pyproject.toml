@@ -11,6 +11,7 @@ dependencies = [
     "bcrypt>=5.0.0",
     "black>=26.1.0",
     "fastapi[standard]>=0.128.8",
+    "greenlet>=3.3.1",
     "mypy>=1.19.1",
     "passlib>=1.7.4",
     "pre-commit>=4.5.1",

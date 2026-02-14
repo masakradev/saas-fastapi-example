@@ -1,8 +1,7 @@
 from typing import Annotated
-from uuid import UUID
 
 import jwt
-from fastapi import Depends, HTTPException, Path, Request, status
+from fastapi import Depends, HTTPException, Path, status
 from fastapi.security import OAuth2PasswordBearer
 from jwt.exceptions import InvalidTokenError
 from pydantic import ValidationError
@@ -21,8 +20,8 @@ TokenDep = Annotated[str, Depends(reusable_oauth2)]
 SessionDep = Annotated[AsyncSession, Depends(get_async_session)]
 
 
-async def get_account(
-    session: SessionDep, token: TokenDep, request: Request
+async def account(
+    session: AsyncSession, token: str, company_id: int | None = None
 ) -> Account:
     try:
         payload = jwt.decode(token, settings.SECRET_KEY, algorithms=[ALGORITHM])
@@ -44,7 +43,6 @@ async def get_account(
         raise HTTPException(status_code=400, detail="Inactive user")
 
     company: Company | None = None
-    company_id = request.path_params.get("company_id")
     if company_id:
         try:
             company = await session.get(Company, company_id)
@@ -62,4 +60,15 @@ async def get_account(
     return Account(user=user, company=company)
 
 
-AccountDep = Annotated[Account, Depends(get_account)]
+async def get_user_account(session: SessionDep, token: TokenDep) -> Account:
+    return await account(session, token, None)
+
+
+async def get_full_account(
+    session: SessionDep, token: TokenDep, company_id: int = Path(...)
+) -> Account:
+    return await account(session, token, company_id)
+
+
+UserAccountDep = Annotated[Account, Depends(get_user_account)]
+AccountDep = Annotated[Account, Depends(get_full_account)]

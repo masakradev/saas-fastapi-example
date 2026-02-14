@@ -16,6 +16,8 @@ anyio==4.12.1
     #   watchfiles
 asyncpg==0.31.0
     # via saas-fastapi-example (pyproject.toml)
+bcrypt==5.0.0
+    # via saas-fastapi-example (pyproject.toml)
 black==26.1.0
     # via saas-fastapi-example (pyproject.toml)
 certifi==2026.1.4
@@ -30,11 +32,6 @@ click==8.3.1
     #   black
     #   rich-toolkit
     #   typer
-    #   uvicorn
-colorama==0.4.6
-    # via
-    #   click
-    #   pytest
     #   uvicorn
 distlib==0.4.0
     # via virtualenv
@@ -55,7 +52,7 @@ fastar==0.8.0
 filelock==3.20.3
     # via virtualenv
 greenlet==3.3.1
-    # via sqlalchemy
+    # via saas-fastapi-example (pyproject.toml)
 h11==0.16.0
     # via
     #   httpcore
@@ -206,6 +203,8 @@ uvicorn==0.40.0
     #   fastapi
     #   fastapi-cli
     #   fastapi-cloud-cli
+uvloop==0.22.1
+    # via uvicorn
 virtualenv==20.36.1
     # via pre-commit
 watchfiles==1.1.1
