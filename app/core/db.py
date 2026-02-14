@@ -10,6 +10,9 @@ from sqlalchemy.ext.asyncio import (
 )
 
 from app.core.config import settings
+from app.modules.company.models import Company  # noqa: F401
+from app.modules.membership.models import Membership, MembershipInvite  # noqa: F401
+from app.modules.user.models import User  # noqa: F401
 
 logger = logging.getLogger(__name__)
 

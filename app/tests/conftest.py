@@ -6,24 +6,21 @@ import pytest
 from alembic import command
 from alembic.config import Config
 from httpx import ASGITransport, AsyncClient
-from sqlalchemy import delete
+from sqlalchemy import text
 from sqlalchemy.ext.asyncio import (
     AsyncEngine,
     AsyncSession,
     async_sessionmaker,
     create_async_engine,
 )
+from sqlmodel import SQLModel
 
 from app.core.account import Account
 from app.core.config import settings
 from app.core.db import get_async_session
 from app.core.deps import get_full_account, get_user_account
 from app.main import app
-from app.modules.company.models import Company
-from app.modules.user.models import User
 from app.tests.fixtures.user import user  # noqa: F401
-
-models = [User, Company]
 
 pytestmark = pytest.mark.anyio
 
@@ -37,6 +34,12 @@ def pytest_configure():
     set_test_env()
     alembic_cfg = Config("alembic.ini")
     command.upgrade(alembic_cfg, "head")
+
+
+def pytest_unconfigure():
+    set_test_env()
+    alembic_cfg = Config("alembic.ini")
+    command.downgrade(alembic_cfg, "base")
 
 
 def get_test_engine() -> AsyncEngine:
@@ -65,8 +68,10 @@ async def async_session() -> AsyncGenerator[AsyncSession, None]:
 
 @pytest.fixture(autouse=True)
 async def cleanup_db(anyio_backend, async_session) -> None:
-    for x in models:
-        await async_session.execute(delete(x))
+    table_names = [table.name for table in SQLModel.metadata.tables.values()]
+
+    for table_name in table_names:
+        await async_session.execute(text(f"DELETE FROM {table_name}"))
     await async_session.commit()
 
 

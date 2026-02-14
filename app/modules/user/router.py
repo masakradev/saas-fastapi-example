@@ -11,8 +11,6 @@ router = APIRouter(tags=["users"])
 async def update_user(
     user_update: UserUpdate, session: SessionDep, account: AccountDep
 ):
-    print(account.user.id, flush=True)
-
     user = await actions.update_user(account.user, user_update, session)
 
     return user
